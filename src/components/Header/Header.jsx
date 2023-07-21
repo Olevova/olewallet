@@ -17,7 +17,6 @@ export default function Header() {
       const addr = ethers.utils.getAddress(account);
       const balanceWei = await provider.getBalance(addr);
       const balanceEther = ethers.utils.formatEther(balanceWei);
-      console.log(balanceEther);
       setBalance(parseFloat(balanceEther).toFixed(3));
     } catch (error) {
       console.error(error);

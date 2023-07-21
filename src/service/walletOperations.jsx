@@ -49,7 +49,6 @@ export const startPayment = async (amount, address) => {
     const signer = provider.getSigner();
     const addr = ethers.utils.getAddress(address);
     const balance = await provider.getBalance(signer.getAddress());
-    console.log(balance, addr);
     if (balance.lt(amount)) {
       notifyInsufficientFunds();
       return;
@@ -65,7 +64,6 @@ export const startPayment = async (amount, address) => {
     console.log(tx);
     const signedTx = await signer.sendTransaction(tx);
     console.log(signedTx);
-    console.log(amount, recipientAddress, 22);
   } catch (err) {
     notifyErr(err.message);
   }

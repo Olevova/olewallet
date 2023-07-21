@@ -13,12 +13,10 @@ export default function WalletForm() {
   const handlerOnChahge = (e) => {
     switch (e.target.name) {
       case "address":
-        console.log(e.target.name);
         setAddress(e.target.value);
         break;
       case "amount":
         setAmount(e.target.value);
-        console.log(e.target.name);
         break;
       default:
         break;
