@@ -53,9 +53,6 @@ export const startPayment = async (amount, address) => {
       notifyInsufficientFunds();
       return;
     }
-    console.log(addr);
-
-    console.log(addr, amount);
 
     const tx = {
       to: addr,
