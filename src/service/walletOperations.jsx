@@ -49,19 +49,25 @@ export const startPayment = async (amount, address) => {
     const signer = provider.getSigner();
     const addr = ethers.utils.getAddress(address);
     const balance = await provider.getBalance(signer.getAddress());
-    if (balance.lt(amount)) {
+    console.log(balance, "balance");
+    console.log(Number(amount));
+    console.log(balance / 1000000000000000000);
+    if (balance < Number(amount)) {
+      console.log("errrrr");
       notifyInsufficientFunds();
       return;
     }
-
+    console.log(58);
+    const amountInString = parseFloat(amount).toFixed(2);
     const tx = {
       to: addr,
-      value: ethers.utils.parseEther(amount.toString()), // Ensure amount is converted to a string
+      value: ethers.utils.parseEther(amountInString),
     };
     console.log(tx);
     const signedTx = await signer.sendTransaction(tx);
     console.log(signedTx);
   } catch (err) {
+    console.log(err.message);
     notifyErr(err.message);
   }
 };

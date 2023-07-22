@@ -54,13 +54,15 @@ export default function WalletForm() {
       setSend(false);
       return;
     }
-    if (amount <= 0) {
+    const amountNum = parseFloat(amount);
+    if (isNaN(amountNum) || amountNum <= 0) {
+      console.log("here");
       notifyAmoun();
       setSend(false);
       return;
     }
 
-    await startPayment(amount, address);
+    await startPayment(amountNum, address);
     setSend(false);
   };
 
@@ -109,7 +111,7 @@ export default function WalletForm() {
 
               <div className="relative">
                 <input
-                  type="number"
+                  type="text"
                   name="amount"
                   value={amount}
                   onChange={handlerOnChahge}
