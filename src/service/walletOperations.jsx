@@ -13,6 +13,18 @@ const notify = () =>
     theme: "dark",
   });
 
+const notifysuccess = (answer) =>
+  toast(`${answer}`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+
 const notifyErr = (err) =>
   toast(`${err}`, {
     position: "top-center",
@@ -63,9 +75,11 @@ export const startPayment = async (amount, address) => {
       to: addr,
       value: ethers.utils.parseEther(amountInString),
     };
-    console.log(tx);
+    // console.log(tx);
     const signedTx = await signer.sendTransaction(tx);
-    console.log(signedTx);
+    const answer = `Відправлено ${amountInString} ETH з адреси ${signedTx?.from} до адреси ${signedTx?.to}`;
+    // console.log(answer);
+    notifysuccess(answer);
   } catch (err) {
     console.log(err.message);
     notifyErr(err.message);

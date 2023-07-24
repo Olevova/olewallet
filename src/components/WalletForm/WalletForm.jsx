@@ -64,6 +64,8 @@ export default function WalletForm() {
 
     await startPayment(amountNum, address);
     setSend(false);
+    setAddress("");
+    setAmount("");
   };
 
   return (
